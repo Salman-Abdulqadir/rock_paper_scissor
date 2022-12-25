@@ -25,6 +25,19 @@ export default createGlobalStyle`
         flex-direction: column;
     }
     .App{
+        min-height: 100vh;
         align-items: center;
+        padding: 2rem;
+    }
+    .rules-btn{
+        align-self: flex-end;
+        cursor: pointer;
+        color: white;
+        font-family: inherit;
+        font-size: 1rem;
+        background: transparent;
+        border: 1px solid white;
+        padding: 0.5rem 2rem;
+        border-radius: 5px;
     }
 `;
