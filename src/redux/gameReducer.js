@@ -4,7 +4,7 @@ const initialState = {
   selection: null,
   computerSelection: null,
   score: 0,
-  winner: "draw",
+  winner: "",
 };
 
 const gameReducer = createSlice({
@@ -20,7 +20,7 @@ const gameReducer = createSlice({
     setWinner: (state) => {
       if (state.selection && state.computerSelection) {
         if (state.computerSelection.selection === state.selection.selection)
-          state.winner = "draw";
+          state.winner = "Draw";
         else if (state.selection.beats === state.computerSelection.selection){
             state.winner = "You Win";
             state.score++;

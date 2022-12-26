@@ -53,6 +53,10 @@ const StyledWinner = styled.section`
   padding: 0 20%;
   .flex-col {
     align-items: center;
+    h2{
+        font-size: 2rem;
+        color: white;
+    }
   }
   .rules-btn {
     padding: 0.5rem 3rem;
@@ -69,10 +73,12 @@ const StyledWinner = styled.section`
     border-width: 2rem;
     opacity: 0.3;
   }
-  .winner {
-    .wrapper {
-      opacity: 1;
-    }
+  .winner .wrapper{
+   opacity: 1;
   }
+  .result{
+    text-align: center;
+  }
+ 
 `;
 export default Winner;
