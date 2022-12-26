@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { setSelection, setComputerSelection, updateScore, setWinner } from "../redux/gameReducer";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  setSelection,
+  setComputerSelection,
+  setWinner,
+} from "../redux/gameReducer";
 
 import paper from "../assets/icon-paper.svg";
 import rock from "../assets/icon-rock.svg";
@@ -25,10 +30,18 @@ const gameLogic = [
   },
 ];
 const Selection = ({ bg, logo }) => {
-    
-    const chooseSelection = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const chooseSelection = () => {
+    let randomNumber = Math.floor(Math.random() * 3);
+    let selection = gameLogic.find((logic) => logic.selection === bg);
+    let computerSelection = gameLogic[randomNumber];
 
-    }
+    dispatch(setSelection(selection));
+    dispatch(setComputerSelection(computerSelection));
+    dispatch(setWinner());
+    navigate("/winner");
+  };
   return (
     <StyledSelection onClick={chooseSelection}>
       <div className={`wrapper ${bg}`}>
@@ -38,7 +51,8 @@ const Selection = ({ bg, logo }) => {
   );
 };
 
-const StyledSelection = styled.div`
+export const StyledSelection = styled.div`
+  border-radius: 50%;
   .wrapper {
     background-color: white;
     padding: 1.5rem;
@@ -47,15 +61,12 @@ const StyledSelection = styled.div`
   }
   .rock {
     border: 1rem solid hsl(349, 71%, 52%);
-
   }
   .paper {
     border: 1rem solid hsl(230, 89%, 62%);
-
   }
   .scissor {
     border: 1rem solid hsl(39, 89%, 49%);
-
   }
 `;
 
