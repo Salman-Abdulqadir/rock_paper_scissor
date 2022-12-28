@@ -22,10 +22,10 @@ const gameReducer = createSlice({
         if (state.computerSelection.selection === state.selection.selection)
           state.winner = "DRAW";
         else if (state.selection.beats === state.computerSelection.selection){
-            state.winner = "YOU WIN";
+            state.winner = "YOU WON";
             state.score++;
         }
-        else state.winner = "YOU LOSE";
+        else state.winner = "YOU LOST";
       }
     },
   },

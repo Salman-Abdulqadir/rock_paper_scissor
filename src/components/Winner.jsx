@@ -1,10 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
+
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import { Navigate, useNavigate } from "react-router-dom";
 import { StyledSelection } from "./Selection";
-import { fadeIn } from "../../animations";
+
+import { Navigate, useNavigate } from "react-router-dom";
+
+import { motion } from "framer-motion";
+import { fadeIn, winnerAnimation } from "../../animations";
+
+import { MdOutlineCelebration, MdOutlineThumbsUpDown } from "react-icons/md";
+import { FaRegSadCry } from "react-icons/fa";
+
+import winnerGif from "../assets/winner.gif";
+import loserGif from "../assets/loser.gif";
+import drawGif from "../assets/draw.gif";
 
 const Winner = () => {
   const navigate = useNavigate();
@@ -12,33 +22,45 @@ const Winner = () => {
     (state) => state.game
   );
   if (!selection || !computerSelection) return <Navigate to={"/"} />;
+  const getResultEmoji = (winner) => {
+    switch (winner) {
+      case "YOU WON":
+        return [<MdOutlineCelebration />, winnerGif];
+      case "YOU LOST":
+        return [<FaRegSadCry />, loserGif];
+      case "DRAW":
+        return [<MdOutlineThumbsUpDown />, drawGif];
+    }
+  };
+  const resultEmoji = getResultEmoji(winner)[0];
+  const resultImg = getResultEmoji(winner)[1];
   return (
-    <StyledWinner className="flex" variants={fadeIn} initial="initial" animate="animate">
-      <div className="flex-col">
+    <StyledWinner
+      className="flex"
+      variants={fadeIn}
+      initial="initial"
+      animate="animate"
+    >
+      <motion.div variants={fadeIn} className="flex-col user">
         <h3>YOU PICKED</h3>
         <StyledSelection
-          className={`selection ${winner === "YOU WIN" ? "winner" : ""}`}
+          className={`selection ${winner === "YOU WON" ? "winner" : ""}`}
         >
           <div className="winner-div">
             <div>
               <div></div>
             </div>
           </div>
-          <div className={`wrapper ${selection.selection}`}>
+          <motion.div className={`wrapper ${selection.selection}`}>
             <img src={selection.icon} alt={selection.selection} />
-          </div>
+          </motion.div>
         </StyledSelection>
-      </div>
-      <div className="result">
-        <h1>{winner}</h1>
-        <button onClick={() => navigate("/")} className="rules-btn">
-          Play Again
-        </button>
-      </div>
-      <div className="flex-col">
+      </motion.div>
+
+      <motion.div variants={fadeIn} className="flex-col computer">
         <h3>THE HOUSE PICKED</h3>
         <StyledSelection
-          className={` selection ${winner === "YOU LOSE" ? "winner" : ""}`}
+          className={` selection ${winner === "YOU LOST" ? "winner" : ""}`}
         >
           <div className="winner-div">
             <div>
@@ -52,15 +74,27 @@ const Winner = () => {
             />
           </div>
         </StyledSelection>
-      </div>
+      </motion.div>
+      <motion.div variants={winnerAnimation} className="result">
+        <h1>
+          {resultEmoji} {winner}
+        </h1>
+        <img src={resultImg} alt="result gif" />
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => navigate("/")}
+          className="rules-btn"
+        >
+          Play Again
+        </motion.button>
+      </motion.div>
     </StyledWinner>
   );
 };
 
 const StyledWinner = styled(motion.section)`
-  width: 100%;
   align-items: center;
-  padding: 0 20%;
   .flex-col {
     align-items: center;
     h3 {
@@ -68,7 +102,15 @@ const StyledWinner = styled(motion.section)`
       color: white;
     }
   }
+  .user {
+    order: 1;
+  }
+  .computer {
+    order: 3;
+  }
   .result {
+    margin: 0rem 3rem;
+    order: 2;
     text-align: center;
     .rules-btn {
       padding: 1rem 3rem;
@@ -79,19 +121,24 @@ const StyledWinner = styled(motion.section)`
     }
     h1 {
       margin-bottom: 1rem;
-      font-size: 4rem;
+      font-size: 3rem;
       color: white;
+    }
+    img{
+      max-width: 15rem;
+      margin: 1.5rem auto;
+      border-radius: 10px;
     }
   }
 
   .selection {
     img {
-      width: 8rem;
+      width: 7rem;
       min-width: 40px;
     }
     .wrapper {
-      padding: 3rem;
-      border-width: 2rem;
+      padding: 2rem;
+      border-width: 1.5rem;
     }
   }
   .winner {
@@ -118,10 +165,18 @@ const StyledWinner = styled(motion.section)`
       width: 80%;
       min-height: 60vh;
       div {
-        width: 70%;
-        min-height: 45vh;
+        width: 60%;
+        min-height: 40vh;
       }
     }
+  }
+  .animation {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 4);
+    z-index: 5;
   }
 `;
 export default Winner;

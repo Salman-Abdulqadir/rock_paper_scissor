@@ -53,11 +53,16 @@ const Selection = ({ bg, logo }) => {
 
 export const StyledSelection = styled.div`
   border-radius: 50%;
+  cursor: pointer;
   .wrapper {
     background-color: white;
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 50%;
     width: fit-content;
+    img {
+      width: 5rem;
+      min-width: 40px;
+    }
   }
   .rock {
     border: 1rem solid hsl(349, 71%, 52%);

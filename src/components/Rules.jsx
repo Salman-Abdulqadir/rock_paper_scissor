@@ -3,18 +3,20 @@ import styled from "styled-components";
 import rules from "../assets/image-rules.svg";
 import { useNavigate } from "react-router-dom";
 import {BsX} from 'react-icons/bs'
+import {motion} from "framer-motion"
+import { fadeIn } from "../../animations";
 
 const Rules = () => {
     const navigate = useNavigate();
   return (
     <StyledRules className="flex-col">
-      <div className="image-wrapper">
+      <motion.div variants={fadeIn} initial="initial" animate="animate" className="image-wrapper">
         <div className="flex">
           <h2>Rules</h2>
           <h2 onClick={()=>{navigate('/')}}><BsX/></h2>
         </div>
         <img src={rules} alt="" />
-      </div>
+      </motion.div>
     </StyledRules>
   );
 };
