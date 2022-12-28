@@ -13,7 +13,7 @@ export default createGlobalStyle`
     }
     body{
         font-family: 'Barlow Semi Condensed', sans-serif;
-        background-color: hsl(214, 47%, 23%);
+        background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%)) ;
     }
     .flex, .flex-col{
         display: flex;

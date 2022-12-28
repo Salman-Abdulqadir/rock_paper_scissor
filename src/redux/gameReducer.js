@@ -20,12 +20,12 @@ const gameReducer = createSlice({
     setWinner: (state) => {
       if (state.selection && state.computerSelection) {
         if (state.computerSelection.selection === state.selection.selection)
-          state.winner = "Draw";
+          state.winner = "DRAW";
         else if (state.selection.beats === state.computerSelection.selection){
-            state.winner = "You Win";
+            state.winner = "YOU WIN";
             state.score++;
         }
-        else state.winner = "The House Wins";
+        else state.winner = "YOU LOSE";
       }
     },
   },

@@ -24,8 +24,8 @@ const StyledRules = styled.div`
   top: 0;
   width: 100%;
   min-height: 100vh;
+  justify-content: center !important;
   align-items: center;
-  justify-content: center;
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.5);
   .image-wrapper {
