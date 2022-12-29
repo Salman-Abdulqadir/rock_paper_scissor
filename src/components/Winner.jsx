@@ -82,7 +82,6 @@ const Winner = () => {
         <img src={resultImg} alt="result gif" />
         <motion.button
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
           onClick={() => navigate("/")}
           className="rules-btn"
         >
@@ -124,7 +123,7 @@ const StyledWinner = styled(motion.section)`
       font-size: 3rem;
       color: white;
     }
-    img{
+    img {
       max-width: 15rem;
       margin: 1.5rem auto;
       border-radius: 10px;
@@ -133,7 +132,7 @@ const StyledWinner = styled(motion.section)`
 
   .selection {
     img {
-      width: 7rem;
+      width: 6rem;
       min-width: 40px;
     }
     .wrapper {
@@ -177,6 +176,42 @@ const StyledWinner = styled(motion.section)`
     width: 100%;
     background-color: rgba(255, 255, 255, 4);
     z-index: 5;
+  }
+  @media screen and (max-width: 900px) {
+    .flex-col h3 {
+      font-size: 1rem;
+      color: white;
+      order: 2;
+    }
+
+    .result {
+      order: 3;
+      margin: 1rem auto;
+      h1 {
+        font-size: 2rem;
+      }
+      .rules-btn {
+        padding: 1rem 2rem;
+        background-color: white;
+        color: hsl(229, 25%, 31%);
+        font-size: 1rem;
+        font-weight: lighter;
+      }
+    }
+    .computer {
+      order: 2;
+    }
+    .selection {
+      order: 1;
+      img {
+        width: 2rem;
+        min-width: 40px;
+      }
+      .wrapper {
+        padding: 1rem;
+        border-width: 1rem;
+      }
+    }
   }
 `;
 export default Winner;

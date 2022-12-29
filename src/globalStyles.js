@@ -40,5 +40,8 @@ export default createGlobalStyle`
         border: 1px solid white;
         padding: 0.5rem 2rem;
         border-radius: 5px;
+        @media screen and (max-width: 500px) {
+            align-self: center;
+        }
     }
 `;

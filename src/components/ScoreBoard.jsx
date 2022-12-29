@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 import { useSelector } from "react-redux";
 
 const ScoreBoard = () => {
-    const score = useSelector(state => state.game.score)
+  const score = useSelector((state) => state.game.score);
   return (
     <StyledBoard className="flex">
       <img src={logo} alt="logo" />
@@ -18,7 +18,7 @@ const ScoreBoard = () => {
 
 const StyledBoard = styled.header`
   min-width: 40%;
-  margin-top: 2rem; 
+  margin-top: 2rem;
   align-items: center;
   border: 1px solid white;
   padding: 1rem;
@@ -30,6 +30,15 @@ const StyledBoard = styled.header`
     border-radius: 10px;
     h2 {
       font-size: 3rem;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    gap: 3rem;
+    img{
+      width: 6rem;
+    }
+    .score h2{
+      font-size: 2rem;
     }
   }
 `;

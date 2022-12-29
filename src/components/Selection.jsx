@@ -73,6 +73,17 @@ export const StyledSelection = styled.div`
   .scissor {
     border: 1rem solid hsl(39, 89%, 49%);
   }
+  @media screen and (max-width: 500px) {
+    .wrapper {
+      padding: 1rem;
+      border-radius: 50%;
+      width: fit-content;
+      img {
+        width: 1rem;
+        min-width: 40px;
+      }
+    }
+  }
 `;
 
 export default Selection;

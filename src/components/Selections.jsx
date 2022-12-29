@@ -14,13 +14,18 @@ import { selectionAnimation } from "../../animations";
 
 const Selections = () => {
   return (
-    <StyledSelections variants={selectionAnimation}  initial="initial" animate="animate" className="flex-col">
+    <StyledSelections
+      variants={selectionAnimation}
+      initial="initial"
+      animate="animate"
+      className="flex-col"
+    >
       <img src={triangle} alt="triangle" className="triangle" />
       <div className="flex">
-        <Selection key={0} logo={paper} bg={"paper"} />
-        <Selection key={1} logo={rock} bg={"rock"} />
+        <Selection className="selection" key={0} logo={paper} bg={"paper"} />
+        <Selection className="selection" key={1} logo={rock} bg={"rock"} />
       </div>
-      <Selection key={2} logo={scissor} bg={"scissor"} />
+      <Selection className="selection" key={2} logo={scissor} bg={"scissor"} />
     </StyledSelections>
   );
 };
@@ -40,5 +45,6 @@ const StyledSelections = styled(motion.section)`
     transform: translate(-50%, -50%);
     z-index: -2;
   }
+ 
 `;
 export default Selections;
